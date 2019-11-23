@@ -31,11 +31,11 @@ mongoose.connect(MONGODB_URI);
   axios.get("http://www.news.google.com").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-    $("h5").each(function (i, element) {
+    $("article").each(function (i, element) {
       var result = {};
 
       result.title = $(this)
-        .children("a")
+        .children("h4")
         .text();
       result.link = $(this)
         .children("a")
